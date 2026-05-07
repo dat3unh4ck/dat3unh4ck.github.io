@@ -496,6 +496,23 @@ section {
   display: none;
 }
 
+.project-card[data-link] {
+  cursor: pointer;
+}
+.project-card[data-link]:hover {
+  border-color: var(--cyan);
+}
+
+.project-link-badge {
+  position: absolute; top: 16px; right: 16px;
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 4px 10px; border-radius: 3px;
+  background: var(--cyan-dim); color: var(--cyan);
+  letter-spacing: 1px; display: flex; align-items: center; gap: 5px;
+  opacity: 0.7; transition: opacity .3s;
+}
+.project-card[data-link]:hover .project-link-badge { opacity: 1; }
+
 /* ============================================
    CERTIFICATIONS TIMELINE
    ============================================ */
@@ -541,6 +558,29 @@ section {
 .timeline-status.done { background: var(--green-dim); color: var(--green); }
 .timeline-status.wip { background: var(--yellow-dim); color: var(--yellow); }
 .timeline-status.prep { background: var(--magenta-dim); color: var(--magenta); }
+
+.cert-group {
+  margin-bottom: 50px;
+}
+.cert-group:last-child { margin-bottom: 0; }
+
+.cert-group-title {
+  font-family: var(--font-mono); font-size: 13px;
+  color: var(--cyan); letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 24px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.cert-group-title span { font-size: 16px; }
+
+.timeline-item a.timeline-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--cyan); opacity: 0.6;
+  margin-left: 8px; transition: opacity .3s;
+  letter-spacing: .5px;
+}
+.timeline-item:hover a.timeline-link { opacity: 1; }
 
 /* ============================================
    CONTACT SECTION
@@ -691,6 +731,7 @@ footer {
       <a href="https://www.youtube.com/@DateUnH4ck" target="_blank"><span>▶ YouTube</span></a>
       <a href="mailto:dat3unh4ck@gmail.com"><span>✉ Email</span></a>
       <a href="https://github.com/dat3unh4ck" target="_blank"><span>⌥ GitHub</span></a>
+      <a href="https://jonathasapuntes.notion.site/Jonathas-Carneiro-Ciberseguridad-Defensiva-SOC-2de10ea9b490803d9cc3c49ec44924e3" target="_blank" style="border-color:var(--text-dim);"><span>📓 Notion</span></a>
     </div>
   </div>
   <div class="hero-stats">
@@ -699,7 +740,7 @@ footer {
       <div class="stat-label">Proyectos</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num" data-count="6">0</div>
+      <div class="stat-num" data-count="7">0</div>
       <div class="stat-label">Certificaciones</div>
     </div>
     <div class="stat-item">
@@ -823,11 +864,13 @@ footer {
     <button class="filter-btn" data-filter="infra">Infraestructura</button>
     <button class="filter-btn" data-filter="auto">Automatización</button>
     <button class="filter-btn" data-filter="tfm">TFM</button>
+    <button class="filter-btn" data-filter="completado" style="border-color:var(--green-dim);color:var(--green);">✓ Completados</button>
   </div>
 
   <div class="projects-grid" id="projects-grid">
 
-    <div class="project-card reveal" data-cat="soc">
+    <div class="project-card reveal" data-cat="soc" data-done="true" data-link="https://jonathasapuntes.notion.site/Casebook-Investigaciones-SOC-de-Extremo-a-Extremo-35310ea9b490814daee9c56ded6934da">
+      <span class="project-link-badge">📓 Ver en Notion →</span>
       <div class="project-num">P-01</div>
       <div class="project-title">Casebook: Investigaciones SOC End-to-End</div>
       <div class="project-desc">Tres investigaciones de incidentes reales desde la alerta inicial hasta lecciones aprendidas. Metodología NIST 800-61, triaje, correlación y mapeo MITRE ATT&CK.</div>
@@ -904,7 +947,7 @@ footer {
       <div class="project-title">Análisis Forense de Memoria (DFIR)</div>
       <div class="project-desc">Volcado y análisis de memoria RAM con Volatility para reconstruir actividad maliciosa, procesos inyectados y artefactos de persistencia.</div>
       <div class="project-stack"><span>Volatility</span><span>Memory Forensics</span><span>DFIR</span><span>Windows Internals</span></div>
-      <div class="project-status"><span class="dot done"></span> Completado</div>
+      <div class="project-status"><span class="dot wip"></span> En curso</div>
     </div>
 
     <div class="project-card reveal" data-cat="auto">
@@ -923,12 +966,13 @@ footer {
       <div class="project-status"><span class="dot wip"></span> En curso</div>
     </div>
 
-    <div class="project-card reveal" data-cat="infra">
+    <div class="project-card reveal" data-cat="infra" data-done="true" data-link="https://jonathasapuntes.notion.site/Bastionado-Hardening-de-Servidores-Linux-30910ea9b49080169f8bd1f04e6ccca0">
+      <span class="project-link-badge">📓 Ver en Notion →</span>
       <div class="project-num">P-13</div>
       <div class="project-title">Bastionado (Hardening) de Servidores Linux</div>
       <div class="project-desc">Implementación de CIS Benchmarks, configuración de firewall, SSH hardening, auditoría de permisos y monitorización de integridad.</div>
       <div class="project-stack"><span>CIS Benchmarks</span><span>iptables</span><span>SSH</span><span>auditd</span></div>
-      <div class="project-status"><span class="dot wip"></span> En curso</div>
+      <div class="project-status"><span class="dot done"></span> Documentado</div>
     </div>
 
     <div class="project-card reveal" data-cat="infra">
@@ -960,15 +1004,16 @@ footer {
       <div class="project-title">Auditoría de Cumplimiento Cloud</div>
       <div class="project-desc">Verificación de estándares de cumplimiento y seguridad en entornos cloud. Evaluación contra frameworks de referencia.</div>
       <div class="project-stack"><span>Azure</span><span>CIS</span><span>Compliance</span><span>Cloud Security</span></div>
-      <div class="project-status"><span class="dot done"></span> Completado</div>
+      <div class="project-status"><span class="dot wip"></span> En curso</div>
     </div>
 
-    <div class="project-card reveal" data-cat="infra">
+    <div class="project-card reveal" data-cat="infra" data-done="true" data-link="https://jonathasapuntes.notion.site/Criptograf-a-Moderna-El-Digital-Secrets-Vault-30910ea9b49080f49463d01e073adbcd">
+      <span class="project-link-badge">📓 Ver en Notion →</span>
       <div class="project-num">P-18</div>
       <div class="project-title">Criptografía Moderna: Digital Secrets Vault</div>
       <div class="project-desc">Implementación de bóveda de secretos con HashiCorp Vault. Gestión de certificados, rotación de claves y cifrado end-to-end.</div>
       <div class="project-stack"><span>HashiCorp Vault</span><span>PKI</span><span>AES</span><span>TLS</span></div>
-      <div class="project-status"><span class="dot wip"></span> En curso</div>
+      <div class="project-status"><span class="dot done"></span> Documentado</div>
     </div>
 
     <div class="project-card reveal" data-cat="tfm" style="border-color: var(--cyan-dim); background: linear-gradient(135deg, var(--bg-card), rgba(0,240,255,0.03));">
@@ -989,44 +1034,69 @@ footer {
   <div class="section-label reveal">04 // FORMACIÓN</div>
   <h2 class="section-title reveal">Certificaciones<span class="accent">.</span></h2>
 
-  <div class="timeline">
-    <div class="timeline-item reveal-left">
-      <div class="timeline-date">2025 – 2027</div>
-      <div class="timeline-title">Máster en Ciberseguridad</div>
-      <div class="timeline-org">Campus Internacional de Ciberseguridad · UCAM</div>
-      <span class="timeline-status wip">En curso</span>
-    </div>
-    <div class="timeline-item reveal-left">
-      <div class="timeline-date">2025</div>
-      <div class="timeline-title">Linux — Nivel Profesional</div>
-      <div class="timeline-org">Certificaciones Linux</div>
-      <span class="timeline-status done">Obtenida</span>
-    </div>
-    <div class="timeline-item reveal-left">
-      <div class="timeline-date">2025</div>
-      <div class="timeline-title">Pre-Máster en Ciberseguridad</div>
-      <div class="timeline-org">Fundamentos de Seguridad</div>
-      <span class="timeline-status done">Completado</span>
-    </div>
-    <div class="timeline-item reveal-left">
-      <div class="timeline-date">2026</div>
-      <div class="timeline-title">Auditoría de Cumplimiento Cloud</div>
-      <div class="timeline-org">Práctica de máster</div>
-      <span class="timeline-status done">Completado</span>
-    </div>
-    <div class="timeline-item reveal-left">
-      <div class="timeline-date">2026</div>
-      <div class="timeline-title">Análisis Forense de Memoria (DFIR)</div>
-      <div class="timeline-org">Práctica de máster</div>
-      <span class="timeline-status done">Completado</span>
-    </div>
-    <div class="timeline-item reveal-left">
-      <div class="timeline-date">2026</div>
-      <div class="timeline-title">Cisco CyberOps Associate</div>
-      <div class="timeline-org">Cisco Networking Academy</div>
-      <span class="timeline-status prep">En preparación</span>
+  <!-- MÁSTER EN CIBERSEGURIDAD -->
+  <div class="cert-group reveal">
+    <div class="cert-group-title"><span>🎓</span> MÁSTER EN CIBERSEGURIDAD · UCAM</div>
+    <div class="timeline">
+      <div class="timeline-item reveal-left">
+        <div class="timeline-date">2025 – 2027</div>
+        <div class="timeline-title">Máster en Ciberseguridad</div>
+        <div class="timeline-org">Campus Internacional de Ciberseguridad · UCAM</div>
+        <span class="timeline-status wip">En curso</span>
+      </div>
+      <div class="timeline-item reveal-left">
+        <div class="timeline-date">2025</div>
+        <div class="timeline-title">Pre-Máster en Ciberseguridad <a href="https://jonathasapuntes.notion.site/Pre-M-ster-Campus-Internacional-de-Ciberseguridad-2eb10ea9b49080129855dd4e7d51baf3" target="_blank" class="timeline-link">📓 Ver →</a></div>
+        <div class="timeline-org">Fundamentos de Seguridad · Campus Internacional</div>
+        <span class="timeline-status done">Completado</span>
+      </div>
+      <div class="timeline-item reveal-left">
+        <div class="timeline-date">2026</div>
+        <div class="timeline-title">Criptografía <a href="https://jonathasapuntes.notion.site/Criptograf-a-35610ea9b49080ed9452c56647c06c5b" target="_blank" class="timeline-link">📓 Ver →</a></div>
+        <div class="timeline-org">Módulo del Máster · Criptografía aplicada</div>
+        <span class="timeline-status done">Completado</span>
+      </div>
+      <div class="timeline-item reveal-left">
+        <div class="timeline-date">2026</div>
+        <div class="timeline-title">Seguridad Web <a href="https://jonathasapuntes.notion.site/Seguridad-Web-35610ea9b49080b58cc3c8cf4c575d8d" target="_blank" class="timeline-link">📓 Ver →</a></div>
+        <div class="timeline-org">Módulo del Máster · Seguridad de aplicaciones</div>
+        <span class="timeline-status done">Completado</span>
+      </div>
     </div>
   </div>
+
+  <!-- CERTIFICACIONES LINUX -->
+  <div class="cert-group reveal">
+    <div class="cert-group-title"><span>🐧</span> CERTIFICACIONES LINUX</div>
+    <div class="timeline">
+      <div class="timeline-item reveal-left">
+        <div class="timeline-date">2025</div>
+        <div class="timeline-title">Linux — Nivel Profesional <a href="https://jonathasapuntes.notion.site/Linux-Unhatched-2eb10ea9b490809a8377c3a8c824f4db" target="_blank" class="timeline-link">📓 Ver →</a></div>
+        <div class="timeline-org">Certificaciones Linux</div>
+        <span class="timeline-status done">Obtenida</span>
+      </div>
+      <div class="timeline-item reveal-left">
+        <div class="timeline-date">2025</div>
+        <div class="timeline-title">Fundamentos de Linux <a href="https://jonathasapuntes.notion.site/Fundamentos-de-Linux-2f510ea9b4908026b97cc80d91e89fa0" target="_blank" class="timeline-link">📓 Ver →</a></div>
+        <div class="timeline-org">Administración de sistemas Linux</div>
+        <span class="timeline-status done">Obtenida</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICACIONES PROFESIONALES -->
+  <div class="cert-group reveal">
+    <div class="cert-group-title"><span>🛡️</span> CERTIFICACIONES PROFESIONALES</div>
+    <div class="timeline">
+      <div class="timeline-item reveal-left">
+        <div class="timeline-date">2026</div>
+        <div class="timeline-title">Cisco CyberOps Associate</div>
+        <div class="timeline-org">Cisco Networking Academy</div>
+        <span class="timeline-status prep">En preparación</span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ================================================
@@ -1222,7 +1292,7 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, 
   .forEach(el => observer.observe(el));
 
 // ============================================
-// PROJECT CARD 3D TILT + SPOTLIGHT
+// PROJECT CARD 3D TILT + SPOTLIGHT + CLICK
 // ============================================
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
@@ -1240,6 +1310,12 @@ document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('mouseleave', () => {
     card.style.transform = '';
   });
+  // Click to open Notion link
+  if (card.dataset.link) {
+    card.addEventListener('click', () => {
+      window.open(card.dataset.link, '_blank');
+    });
+  }
 });
 
 // ============================================
@@ -1251,7 +1327,12 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.classList.add('active');
     const f = btn.dataset.filter;
     document.querySelectorAll('.project-card').forEach(card => {
-      if (f === 'all' || card.dataset.cat === f) {
+      let show = false;
+      if (f === 'all') show = true;
+      else if (f === 'completado') show = card.dataset.done === 'true';
+      else show = card.dataset.cat === f;
+
+      if (show) {
         card.classList.remove('hidden-card');
         card.style.animation = 'fadeUp .5s var(--ease-out-expo) forwards';
       } else {
